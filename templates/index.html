@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title > Mission to Mars</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Add Jumbotron to Header -->
+      <div class="jumbotron text-center" 
+      style = "background-image: url(https://mediaproxy.salon.com/width/1200/https://media.salon.com/2022/05/mars-canyons-0517221.jpg); 
+      background-size: cover; height: 100%" >
+        <h1 style = "color:red; font-size: 120px; text-shadow: 
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        1px 1px 0 #000000,  
+        -2px 0 0 #000000,
+        2px 0 0 #000000,
+        0 2px 0 #000000,
+        0 -2px 0 #000000;;"><strong>Mission to Mars</strong></h1>
+        <!-- Add a button to activate scraping script -->
+        <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+      </div>
+      <!-- Add section for Mars News -->
+      <div class="row" id="mars-news">
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-body">
+              <h2 style = "color:red"><strong>Latest Mars News</strong></h2>
+              <h4 class="media-heading">{{ mars.news_title }}</h4>
+              <p>{{ mars.news_paragraph }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Section for Featured Image and Facts table -->
+      <div class="row" id="mars-featured-image">
+        <div class="col-md-8">
+          <h2 style = "color:red"><strong>Featured Mars Image</strong></h2>
+          <img
+            src="{{mars.featured_image }}"
+            class="img-responsive"
+            alt="Responsive image"
+          />
+        </div>
+        <div class="col-md-4">
+          <!-- Mars Facts -->
+          <div class="row" id="mars-facts">
+            <h2 style = "color:red"><strong>Mars Facts</strong></h2>
+            {{ mars.facts | safe }}
+          </div>
+
+        </div>
+      </div>
+      <div class = "img-thumbnail" style = "width:100% border-width:10px; border-style:solid; border-color:#FF0000"> 
+     
+      <h2 class = "text-center" style = "color:red"><strong>Mars Hemispheres</h2></strong>
+      <div class = "row" style = "margin-right:0 !important; margin-left:0 !important">
+
+      
+        {% for x in mars.hemispheres %}
+        <div class = "col-md-3 img-thumbnail">
+        
+          <img
+            src = "{{x.img_url}}"
+            class = "text-center img-responsive "
+            alt = "{{x.title}}"
+           
+          /> 
+          <h4 style = "color:red"><center><strong>{{x.title}}</strong></center></h4>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>  
+  </body>
+</html>
